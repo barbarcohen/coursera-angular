@@ -17,12 +17,13 @@
       <button class="btn btn-primary" ng-click="narrowItController.getMatchedMenuItems()">Narrow It Down For Me!</button>
     </div>
 
-    <!-- temp solution-->
-    <ul ng-repeat="item in narrowItController.list()">
-      <li>{{item.name}}</li>
-    </ul>
-    <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...."></found-items>
+
+    <!-- found-items should be implemented as a component  "-->
+  <found-items
+    found-items="narrowItController.found()"
+    on-remove="narrowItController.remove(index)">
+  </found-items>
+
   </div>
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
