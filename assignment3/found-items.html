@@ -1,7 +1,8 @@
+<div ng-if="dirController.foundCount() == 0" class="alert alert-danger" style="float:right" role"alert">Nothing found!</div>
+
 <ul ng-repeat="item in dirController.foundItems" style="float:left">
   <li>
     {{item.name}}, {{item.short_name}}, {{item.description}}
     <button class="btn" ng-click="dirController.onRemove({index: $index})">Don't want this one!</button>
   </li>
 </ul>
-<div ng-if="dirController.foundItems.length==0" class="alert alert-danger" style="float:right" role"alert">Nothing found!</div>

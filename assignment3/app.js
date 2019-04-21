@@ -13,19 +13,15 @@
     var narrowItController = this;
 
     var found = [];
-
     narrowItController.getMatchedMenuItems = function(){
       var searchTerm = $scope.searchTerm
-      if(searchTerm == undefined || searchTerm.length == 0 ) {
-        found = new Array();
-      } else {
+
         var promise = MenuSerchService.getMatchedMenuItems(searchTerm);
         promise.then(function(response){
           found = response;
         }, function(error){
           console.log("error while retrieving the data");
         });
-      }
     };
 
     narrowItController.remove = function (index){
@@ -35,12 +31,17 @@
     narrowItController.found = function(){
       return found;
     };
+
+    narrowItController.foundCount = function(){
+      return MenuSerchService.getFoundCount();
+    }
+
   }
 
   MenuSerchService.$inject = ["$http", "ApiBasePath"];
   function MenuSerchService($http, ApiBasePath){
     var service = this;
-
+    var foundCount = -1;
     service.getMatchedMenuItems = function(searchTerm){
       var response = $http({
           method: "GET",
@@ -48,16 +49,24 @@
         }).then(function (response){
           // process result and only keep items that match
           var foundItems = [];
-
-          var items = response.data.menu_items;
-          for(var index = 0; index < items.length; ++index){
-            if(items[index].description.includes(searchTerm)){
-              foundItems.push(items[index]);
+          if(searchTerm == undefined || searchTerm == ""){
+            foundItems = [];
+          } else {
+            var items = response.data.menu_items;
+            for(var index = 0; index < items.length; ++index){
+              if(items[index].description.includes(searchTerm)){
+                foundItems.push(items[index]);
+              }
             }
           }
+          foundCount = foundItems.length;
           return foundItems;
         });
       return response;
+    };
+
+    service.getFoundCount = function(){
+      return foundCount;
     };
   }
 
@@ -68,6 +77,7 @@
         scope: {
           "foundItems": "<",
           "onRemove": "&",
+          "foundCount": "&"
         },
         controller: FoundItemsController,
         controllerAs: "dirController",
@@ -78,5 +88,5 @@
 
   function FoundItemsController(){
     var dirController = this;
-  };
+  }
 })();
