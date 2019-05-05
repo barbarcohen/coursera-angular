@@ -14,7 +14,7 @@
         {
           name: 'categories',
           url: '/categories',
-          templateUrl: 'src/menu.template.html',
+          templateUrl: 'src/menu/menu.template.html',
           controller: 'MenuController as menuCtrl',
           resolve: {
             categories: ['MenuAppService', function(MenuAppService) {
@@ -25,7 +25,7 @@
         {
           name: 'categories.items',
           url: '/{id}/items',
-          templateUrl: 'src/items.template.html',
+          templateUrl: 'src/items/items.template.html',
           controller: 'ItemsController as itemsCtrl',
           params: {
             id: null
