@@ -1,0 +1,35 @@
+body {
+  font-size: 1.2em;
+}
+
+div.tabs > a, div.tabs > button {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+div.tabs {
+  margin-bottom: 10px;
+}
+
+div.left, div.right  {
+  float: left;
+}
+
+div.left{
+  width: 240px;
+}
+
+div#content::after {
+  clear:both;
+}
+
+.active {
+  font-weight: bold;
+}
+
+span.price {
+  font-size: 2em;
+}
+span.price::before {
+  content: " $"
+}
