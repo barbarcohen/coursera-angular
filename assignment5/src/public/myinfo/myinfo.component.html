@@ -1,0 +1,20 @@
+
+<div ng-if="$ctrl.myInfo">
+  <fieldset>
+    Contact information:
+    <ul>
+      <li>Name: {{$ctrl.myInfo.name}}</li>
+      <li>Name: {{$ctrl.myInfo.surname}}</li>
+      <li>Name: {{$ctrl.myInfo.email}}</li>
+      <li>Name: {{$ctrl.myInfo.phone}}</li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    Favorite food:
+    <menu-item menu-item="$ctrl.myInfo.menuItem"/>
+  </fieldset>
+
+</div>
+<div ng-if="$ctrl.myInfo==undefined">
+  Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+</div>

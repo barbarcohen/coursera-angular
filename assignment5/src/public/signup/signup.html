@@ -1,0 +1,45 @@
+<legend>Sign Up form</legend>
+  <form name="signupForm" novalidate>
+      Name:
+      <input type="text" name="name" placeholder="Give us your name"
+      ng-model="signup.name"
+      required
+      minlength="2"
+      ng-maxlength="20">
+      <span ng-if="(signupForm.name.$error.required || signupForm.name.$error.minlength)
+      && signupForm.name.$touched">
+        Name of minimal length 2 is required
+      </span>
+      <br/>
+      Surname:
+      <input type="text" name="surname" placeholder="Give us your surname"
+      ng-model="signup.surname"
+      required
+      minlength="2"
+      ng-maxlength="20">
+      <span ng-if="(signupForm.surname.$error.required || signupForm.surname.$error.minlength)
+       && signupForm.surname.$touched">
+        Surname of minimal length 2 is required
+      </span>
+      <br/>
+      Email:
+      <input type="email" name="email" placeholder="Give us your email address"
+      ng-model="signup.email"
+      required>
+      <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+         Must be a valid email address
+      </span>
+      <br/>
+      Telephone:
+      <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Optional ###-###-###"
+      ng-model="signup.phone">
+      <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+        Must a valid phone number in the format ###-###-###
+      </span>
+
+     <button
+      ng-disabled="signupForm.$invalid"
+      ng-click="signupForm.submit()">
+      Submit
+    </button>
+  </form>
