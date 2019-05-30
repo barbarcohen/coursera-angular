@@ -6,6 +6,16 @@ angular.module('public')
 
 SignupController.$inject = ['SignupService'];
 function SignupController (SignupService){
+  var ctrl = this;
+  //place for default values if needed
+  ctrl.item = SignupService.getMyInfo();
+  ctrl.dataSaved = false;
 
+
+  ctrl.submit = function(){
+    ctrl.favoriteFound = SignupService.signUp(ctrl.item);
+    console.log("favoriteFound "+favoriteFound);
+    ctrl.dataSaved = true;
+  };
 }
 })();

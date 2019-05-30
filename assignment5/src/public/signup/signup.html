@@ -2,7 +2,7 @@
   <form name="signupForm" novalidate>
       Name:
       <input type="text" name="name" placeholder="Give us your name"
-      ng-model="signup.name"
+      ng-model="ctrl.item.name"
       required
       minlength="2"
       ng-maxlength="20">
@@ -13,7 +13,7 @@
       <br/>
       Surname:
       <input type="text" name="surname" placeholder="Give us your surname"
-      ng-model="signup.surname"
+      ng-model="ctrl.item.surname"
       required
       minlength="2"
       ng-maxlength="20">
@@ -24,7 +24,7 @@
       <br/>
       Email:
       <input type="email" name="email" placeholder="Give us your email address"
-      ng-model="signup.email"
+      ng-model="ctrl.item.email"
       required>
       <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
          Must be a valid email address
@@ -32,14 +32,27 @@
       <br/>
       Telephone:
       <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Optional ###-###-###"
-      ng-model="signup.phone">
+      ng-model="ctrl.item.phone">
       <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
         Must a valid phone number in the format ###-###-###
       </span>
+      <br/>
+      Favorite food:
+      <input type="text" name="favorite" placeholder="Give us your favorite menu item number"
+      ng-model="ctrl.item.favorite">
+      <span ng-if="ctrl.favoriteFound == false">
+        No such menu number exists
+      </span>
+      <br/>
 
      <button
       ng-disabled="signupForm.$invalid"
-      ng-click="signupForm.submit()">
+      ng-click="ctrl.submit()">
       Submit
     </button>
+
   </form>
+
+  <span ng-if="ctrl.dataSaved">
+    Your information has been saved.
+  </span>

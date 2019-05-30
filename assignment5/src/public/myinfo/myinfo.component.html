@@ -4,14 +4,14 @@
     Contact information:
     <ul>
       <li>Name: {{$ctrl.myInfo.name}}</li>
-      <li>Name: {{$ctrl.myInfo.surname}}</li>
-      <li>Name: {{$ctrl.myInfo.email}}</li>
-      <li>Name: {{$ctrl.myInfo.phone}}</li>
+      <li>Surname: {{$ctrl.myInfo.surname}}</li>
+      <li>Email: {{$ctrl.myInfo.email}}</li>
+      <li>Phone: {{$ctrl.myInfo.phone}}</li>
     </ul>
   </fieldset>
   <fieldset>
     Favorite food:
-    <menu-item menu-item="$ctrl.myInfo.menuItem"/>
+    <menu-item ng-if="$ctrl.myInfo.favorite" menu-item="$ctrl.myInfo.favorite"/>
   </fieldset>
 
 </div>
