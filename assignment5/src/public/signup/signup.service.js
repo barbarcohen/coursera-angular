@@ -8,27 +8,30 @@
   function SignupService($http, ApiPath){
     var SignupService = this;
 
-    var signupData = undefined;
+    var signupData;
 
     SignupService.signUp = function(item){
-        var shortName = item.favorite;
-
-
-        return $http.get(ApiPath + '/menu_items/'+shortName+'.json')
+      signupData = item;
+      if(item.favorite){
+        return $http.get(ApiPath + '/menu_items/'+item.favorite.toUpperCase()+'.json')
         .then(function (response) {
-          signupData = item;
-          return true;
-        }, function(data){
-          console.log(data);
-          return false;
+          signupData.favoriteData = response.data;
+          return response.data;
+        }, function(error){
+          SignupService.clearFavorite();
         });
+      } else {
+        //favorite item was deleted
+        SignupService.clearFavorite();
+      }
     };
-
+  
+    SignupService.clearFavorite = function(){
+      signupData.favoriteData = undefined;
+    }
     SignupService.getMyInfo = function(){
         return signupData;
     };
-    SignupService.searchForFavorite = function(shortName){
-        return false;
-    };
+
   }
 })();

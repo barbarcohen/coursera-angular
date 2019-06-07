@@ -1,5 +1,5 @@
 
-<div ng-if="$ctrl.myInfo">
+<div ng-if="$ctrl.myInfo" id="my-info">
   <fieldset>
     Contact information:
     <ul>
@@ -9,9 +9,9 @@
       <li>Phone: {{$ctrl.myInfo.phone}}</li>
     </ul>
   </fieldset>
-  <fieldset>
-    Favorite food:
-    <menu-item ng-if="$ctrl.myInfo.favorite" menu-item="$ctrl.myInfo.favorite"/>
+  <fieldset ng-if="$ctrl.myInfo.favoriteData">
+    <legend>Favorite food:</legend>
+    <menu-item menu-item="$ctrl.myInfo.favoriteData"/>
   </fieldset>
 
 </div>

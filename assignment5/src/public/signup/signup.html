@@ -40,7 +40,9 @@
       Favorite food:
       <input type="text" name="favorite" placeholder="Give us your favorite menu item number"
       ng-model="ctrl.item.favorite">
-      <span ng-if="ctrl.favoriteFound == false">
+
+      <!--TODO get error by using inteceptor or something-->
+      <span ng-if="signupForm.favorite.$touched && ctrl.item.favorite && !ctrl.item.favoriteData">
         No such menu number exists
       </span>
       <br/>

@@ -13,8 +13,7 @@ function SignupController (SignupService){
 
 
   ctrl.submit = function(){
-    ctrl.favoriteFound = SignupService.signUp(ctrl.item);
-    console.log("favoriteFound "+favoriteFound);
+    SignupService.signUp(ctrl.item);
     ctrl.dataSaved = true;
   };
 }

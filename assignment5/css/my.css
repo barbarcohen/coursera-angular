@@ -4,6 +4,9 @@ form input{
 form button {
   color: black;
 }
+legend {
+  color: white;
+}
 /* FILE: css/styles.css */
 .ng-touched.ng-valid {
   border: 2px green solid;
