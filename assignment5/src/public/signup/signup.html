@@ -42,7 +42,7 @@
       ng-model="ctrl.item.favorite">
 
       <!--TODO get error by using inteceptor or something-->
-      <span ng-if="signupForm.favorite.$touched && ctrl.item.favorite && !ctrl.item.favoriteData">
+      <span ng-if="signupForm.favorite.$touched && ctrl.favoriteError">
         No such menu number exists
       </span>
       <br/>

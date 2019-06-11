@@ -13,8 +13,17 @@ function SignupController (SignupService){
 
 
   ctrl.submit = function(){
-    SignupService.signUp(ctrl.item);
-    ctrl.dataSaved = true;
+    //reset the message from last search
+    ctrl.favoriteError = false;
+
+    var promise = SignupService.signUp(ctrl.item);
+    promise.then(() => {
+        ctrl.dataSaved = true;
+    },
+    () => {
+        ctrl.favoriteError = true;
+    })
+
   };
 }
 })();

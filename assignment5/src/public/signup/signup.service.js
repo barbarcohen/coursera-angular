@@ -11,21 +11,27 @@
     var signupData;
 
     SignupService.signUp = function(item){
-      signupData = item;
-      if(item.favorite){
-        return $http.get(ApiPath + '/menu_items/'+item.favorite.toUpperCase()+'.json')
-        .then(function (response) {
-          signupData.favoriteData = response.data;
-          return response.data;
-        }, function(error){
+
+      return new Promise((resolve, reject) => {
+        signupData = item;
+        if(item.favorite){
+          $http.get(ApiPath + '/menu_items/'+item.favorite.toUpperCase()+'.json')
+                .then(function (response) {
+                    signupData.favoriteData = response.data;
+                    resolve();
+                 }, function(error){
+                    SignupService.clearFavorite();
+                    reject();
+                  });
+        } else {
+          //favorite item was deleted
           SignupService.clearFavorite();
-        });
-      } else {
-        //favorite item was deleted
-        SignupService.clearFavorite();
-      }
+          resolve();
+        }
+      });
+
     };
-  
+
     SignupService.clearFavorite = function(){
       signupData.favoriteData = undefined;
     }
